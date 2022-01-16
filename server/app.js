@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const env = process.env.NODE_ENV || 'development';
-
+const cors = require('cors');
 const config = require('./config/config')[env];
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -14,6 +14,8 @@ const app = express();
 require('./config/database')()
 
 // app.use(logger('dev'));
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/register', (req, res) => {
   const body = req.body;
-  console.log('body');
+  console.log('body', body);
 });
 
 router.post('/login', (req, res) => {
