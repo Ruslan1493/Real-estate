@@ -5,6 +5,7 @@ const Register = () => {
         username: '',
         password: '',
         confirmPassword: '',
+        email: '',
     });
 
     const onChange = (e) => {
@@ -22,7 +23,8 @@ const Register = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(res => console.log(res))
+        .then(res => res.json())
+        .then(data => console.log('Frontend data: ', data))
         .catch(err => {
             console.log(err);
         });
@@ -34,15 +36,19 @@ const Register = () => {
             <form method='POST' onSubmit={onSubmit}>
                 <label>
                     Username:
-                    <input name='username' type='text' value={inputValue['username']} onChange={onChange} />
+                    <input name='username' type='text' defaultValue={inputValue['username']} onChange={onChange} />
                 </label>
                 <label>
                     Password:
-                    <input name='password' type='password' value={inputValue['password']} onChange={onChange} />
+                    <input name='password' type='password' defaultValue={inputValue['password']} onChange={onChange} />
                 </label>
                 <label>
                     Confirm password:
-                    <input name='confirmPassword' type='password' value={inputValue['confirmPassword']} onChange={onChange} />
+                    <input name='confirmPassword' type='password' defaultValue={inputValue['confirmPassword']} onChange={onChange} />
+                </label>
+                <label>
+                    Email:
+                    <input name='email' type='text' defaultValue={inputValue['email']} onChange={onChange} />
                 </label>
                 <button>Register</button>
             </form>

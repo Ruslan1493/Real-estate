@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const dotenv = require('dotenv');
 const env = process.env.NODE_ENV || 'development';
 const cors = require('cors');
 const config = require('./config/config')[env];
@@ -10,7 +11,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
-
+dotenv.config();
 require('./config/database')()
 
 // app.use(logger('dev'));
@@ -37,7 +38,6 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
 });
 
 module.exports = app;
