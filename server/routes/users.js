@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const userValidation = require('../validation');
+const userValidation = require('../validations/validation');
 const bcrypt = require('bcrypt');
 
 /* GET users listing. */

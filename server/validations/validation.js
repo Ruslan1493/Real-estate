@@ -3,9 +3,9 @@
 const checkUserData = (username, password, confirmPassword, email, isRegister) => {
     let errorMessage = '';
     let validationPassed = false;
-    if (username.length < 6 || username.length > 20) {
+    if (username.length < 3 || username.length > 20) {
         return {
-            errorMessage: 'Username length is either less thatn 6 or bigger than 20',
+            errorMessage: 'Username length is either less than 6 or bigger than 20',
             validationPassed: false
         }
     } else if (password.length < 6 || password.length > 30) {
