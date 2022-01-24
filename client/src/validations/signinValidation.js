@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 const toastOptions = {
     position: "top-center",
     autoClose: 3000,
@@ -7,10 +7,10 @@ const toastOptions = {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    
+
 };
 
-export default function (isRegister, username, email, password, confirmPassword) {
+const signinValidation = (isRegister, username, email, password, confirmPassword) => {
     const errors = [];
     if (username.length < 3) {
         errors.push('The username should be atleast 3 characters long!');
@@ -28,7 +28,7 @@ export default function (isRegister, username, email, password, confirmPassword)
         errors.push('The password should be atleast 6 characters long!');
         // toast.warn('The password should be atleast 6 characters long!', toastOptions)
     }
-    else if (!email.match(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+    else if (!email.match(/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
         errors.push('The entered email is not valid!');
         // toast.warn('The entered email is not valid!', toastOptions)
     }
@@ -49,7 +49,9 @@ export default function (isRegister, username, email, password, confirmPassword)
         }
     };
     console.log(errors.length)
-    if(errors.length >= 1){
+    if (errors.length >= 1) {
         toast.warn(errors[0], toastOptions)
     }
 };
+
+export default signinValidation;
