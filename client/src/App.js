@@ -5,15 +5,20 @@ import Register from './components/User/Register';
 import Home from './components/Home';
 import Navigation from './components/Navigation';
 import NotFound from './components/Notfound';
+import Login from './components/User/Login';
+// import { LogProvider } from './context/logFormContext';
 
 function App() {
   return (
     <React.Fragment>
+      {/* <LogProvider> */}
       <Navigation />
+      {/* </LogProvider> */}
       <Routes>
-        <Route exact path='/' element={ <Home/>}/>
+        <Route exact path='/' element={<Home />} />
         <Route path='/users/register/' element={<Register />} />
-        <Route path='*' element={<NotFound />}/>
+        <Route path='/users/login/' element={<Login />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </React.Fragment>
   );

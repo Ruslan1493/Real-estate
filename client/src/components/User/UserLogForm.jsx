@@ -1,4 +1,4 @@
-const LogForm = ({isRegister, inputValue, onChange}) => {
+const LogForm = ({isRegister, inputValue, onChange, inputVal, onChangeVal}) => {
     console.log(isRegister);
     return (
         <>
