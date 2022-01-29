@@ -1,55 +1,57 @@
 import { useContext, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import signinValidation from "../../validations/signinValidation";
+import signinValidationPassed from "../../validations/signinValidation";
 import LogForm from "./UserLogForm";
-import LogContext, { LogProvider } from '../../context/logFormContext';
+import LogContext from '../../context/logFormContext';
 
 const Login = () => {
-    // let { value } = useContext(LogContext);
-
+    const { inputValueLogin, onChangeLogin } = useContext(LogContext);
     // console.log(value)
-    let [inputValue, setInputValue] = useState({
-        username: '',
-        password: '',
-        email: '',
-    });
+    // let [inputValue, setInputValue] = useState({
+    //     username: '',
+    //     password: '',
+    //     email: '',
+    // });
 
-    const onChange = (e) => {
-        setInputValue(() => ({ ...inputValue, [e.target.name]: e.target.value }));
-        console.log(inputValue);
-    };
+    // const onChange = (e) => {
+    //     setInputValue(() => ({ ...inputValue, [e.target.name]: e.target.value }));
+    //     console.log(inputValue);
+    // };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const { username, email, password } = inputValue;
-        signinValidation(true, username, email, password);
-        const data = inputValue;
-        // fetch('http://localhost:4000/users/register', {
-        //     method: 'POST',
-
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        // .then(res => res.json())
-        // .then(data => console.log('Frontend data: ', data))
-        // .catch(err => {
-        //     console.log(err);
-        // });
+        const { username, password } = inputValueLogin;
+        if(!signinValidationPassed(false, username, password)){
+            return;
+        }
+        const data = inputValueLogin;
+        console.log('in login func')
+        fetch('http://localhost:4000/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                
+                console.log('Frontend data: ', data)
+            })
+            .catch(err => {
+                console.log(err);
+            });
     };
 
     return (
         <>
-                {/* <LogContext.Consumer> */}
-                    <h1>Login</h1>
-                    <form method='POST' onSubmit={onSubmit}>
+            <h1>Login</h1>
+            <form method='POST' onSubmit={onSubmit}>
 
-                        <LogForm isRegister={false} inputValue={inputValue} onChange={onChange} />
-                        <ToastContainer />
-                    </form>
-                {/* </LogContext.Consumer> */}
+                <LogForm isRegister={false} inputValue={inputValueLogin} onChange={onChangeLogin} />
+                <ToastContainer />
+            </form>
         </>
     )
 };

@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 router.post('/register', async (req, res) => {
   const { username, password, confirmPassword, email } = req.body;
 
-  const { errorMessage, validationPassed } = userValidation(username, password, confirmPassword, email, true);
+  const { errorMessage, validationPassed } = userValidation(true, username, password, confirmPassword, email);
   if (validationPassed) {
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(password, salt);
@@ -31,9 +31,28 @@ router.post('/register', async (req, res) => {
 
 });
 
-router.post('/login', (req, res) => {
-  const body = req.body;
-  console.log('body');
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  const { errorMessage, validationPassed } = userValidation(false, username, password);
+  if (validationPassed) {
+
+    User.findOne({ username: username })
+      .then(async data => {
+        const equalPasswords = await bcrypt.compare(password, data.password);
+
+        if (!equalPasswords) {
+          return res.status(401).send(JSON.stringify({ message: 'The entered user data is invalid' }))
+        }
+        return res.status(200).send(JSON.stringify({ data, message: 'success' }));
+      })
+      .catch(err => {
+        console.log('Error with user login: ', err)
+        return res.status(400).send(JSON.stringify({ message: err }))
+      })
+  } else {
+    res.status(400).send(JSON.stringify({ message: errorMessage }))
+  }
 });
 
 module.exports = router;

@@ -10,7 +10,7 @@ const toastOptions = {
 
 };
 
-const signinValidation = (isRegister, username, email, password, confirmPassword) => {
+const signinValidationPassed = (isRegister, username, password, confirmPassword, email) => {
     const errors = [];
     if (username.length < 3) {
         errors.push('The username should be atleast 3 characters long!');
@@ -28,13 +28,12 @@ const signinValidation = (isRegister, username, email, password, confirmPassword
         errors.push('The password should be atleast 6 characters long!');
         // toast.warn('The password should be atleast 6 characters long!', toastOptions)
     }
-    else if (!email.match(/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
-        errors.push('The entered email is not valid!');
-        // toast.warn('The entered email is not valid!', toastOptions)
-    }
+    
     if (isRegister) {
-        console.log(password)
-        console.log(confirmPassword.length)
+        if (!email.match(/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+            errors.push('The entered email is not valid!');
+            // toast.warn('The entered email is not valid!', toastOptions)
+        }
         if (confirmPassword.length < 6) {
             errors.push('The confirmation password should be atleast 6 characters long!');
             // toast.warn('The confirmation password should be atleast 6 characters long!', toastOptions)
@@ -51,7 +50,9 @@ const signinValidation = (isRegister, username, email, password, confirmPassword
     console.log(errors.length)
     if (errors.length >= 1) {
         toast.warn(errors[0], toastOptions)
+        return false;
     }
+    return true;
 };
 
-export default signinValidation;
+export default signinValidationPassed;

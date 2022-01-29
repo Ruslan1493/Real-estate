@@ -1,4 +1,4 @@
-const LogForm = ({isRegister, inputValue, onChange, inputVal, onChangeVal}) => {
+const LogForm = ({ isRegister, inputValue, onChange, inputVal, onChangeVal }) => {
     console.log(isRegister);
     return (
         <>
@@ -13,16 +13,18 @@ const LogForm = ({isRegister, inputValue, onChange, inputVal, onChangeVal}) => {
             {
                 isRegister
                     ?
-                    <label>
-                        Confirm password:
-                        <input name='confirmPassword' type='password' defaultValue={inputValue['confirmPassword']} onChange={onChange} />
-                    </label>
+                    <>
+                        <label>
+                            Confirm password:
+                            <input name='confirmPassword' type='password' defaultValue={inputValue['confirmPassword']} onChange={onChange} />
+                        </label>
+                        <label>
+                            Email:
+                            <input name='email' type='text' defaultValue={inputValue['email']} onChange={onChange} />
+                        </label>
+                    </>
                     : null
             }
-            <label>
-                Email:
-                <input name='email' type='text' defaultValue={inputValue['email']} onChange={onChange} />
-            </label>
             <button>{isRegister ? 'Register' : 'Login'}</button>
         </>
     )
