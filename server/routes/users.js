@@ -14,6 +14,18 @@ router.post('/register', async (req, res) => {
 
   const { errorMessage, validationPassed } = userValidation(true, username, password, confirmPassword, email);
   if (validationPassed) {
+    const foundUser = User.find({ username, email })
+      .then(data => {
+      })
+      .catch(err => {
+        console.log('Error with user creation: ', err)
+      });
+
+    if (foundUser) {
+      res.status(400).send(JSON.stringify({ message: 'The user with this data already exists', hasError: true }))
+      return;
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(password, salt);
     User.create({
@@ -26,7 +38,7 @@ router.post('/register', async (req, res) => {
         console.log('Error with user creation: ', err)
       });
   } else {
-    res.status(400).send(JSON.stringify({ message: errorMessage }))
+    res.status(400).send(JSON.stringify({ message: errorMessage, hasError: true }))
   }
 
 });
