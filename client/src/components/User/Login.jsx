@@ -8,17 +8,6 @@ import LogContext from '../../context/logFormContext';
 
 const Login = () => {
     const { inputValueLogin, onChangeLogin } = useContext(LogContext);
-    // console.log(value)
-    // let [inputValue, setInputValue] = useState({
-    //     username: '',
-    //     password: '',
-    //     email: '',
-    // });
-
-    // const onChange = (e) => {
-    //     setInputValue(() => ({ ...inputValue, [e.target.name]: e.target.value }));
-    //     console.log(inputValue);
-    // };
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -28,14 +17,7 @@ const Login = () => {
         }
         const data = inputValueLogin;
         console.log('in login func')
-        // fetch('http://localhost:4000/users/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        //     .then(res => res.json())
+  
         signIn(false, data)
             .then(data => {
                 console.log('Frontend data: ', data)

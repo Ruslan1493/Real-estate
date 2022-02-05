@@ -8,17 +8,6 @@ import LogForm from "./UserLogForm";
 
 const Register = () => {
     const { inputValueRegister, onChangeRegister } = useContext(LogContext);
-    // const [inputValue, setInputValue] = useState({
-    //     username: '',
-    //     password: '',
-    //     confirmPassword: '',
-    //     email: '',
-    // });
-
-    // const onChange = (e) => {
-    //     setInputValue(() => ({ ...inputValue, [e.target.name]: e.target.value }));
-    //     console.log(inputValue);
-    // };
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -28,16 +17,6 @@ const Register = () => {
         }
         const data = inputValueRegister;
 
-
-        // fetch('http://localhost:4000/users/register', {
-        //     method: 'POST',
-
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        //     .then(res => res.json())
         signIn(true, data)
             .then(data => {
                 console.log('Frontend data: ', data)
