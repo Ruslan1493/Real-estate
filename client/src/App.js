@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Navigation from './components/Navigation';
 import NotFound from './components/Notfound';
 import Login from './components/User/Login';
+import CreateProperty from './components/CreateProperty';
 // import { LogProvider } from './context/logFormContext';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       {/* </LogProvider> */}
       <Routes>
         <Route exact path='/' element={<Home />} />
+        <Route path='/property/create' element={<CreateProperty />} />
         <Route path='/users/register/' element={<Register />} />
         <Route path='/users/login/' element={<Login />} />
         <Route path='*' element={<NotFound />} />
