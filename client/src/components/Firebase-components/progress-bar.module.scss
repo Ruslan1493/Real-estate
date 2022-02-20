@@ -1,0 +1,22 @@
+.createForm{
+    position: relative;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 40%;
+}
+
+#ProgressBar{
+    position:absolute;
+    width: 100%;
+    display: block;
+    height: 5px;
+    background-color: rgb(43, 255, 0);
+    margin-top: 10px;
+    // margin: 0 auto;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(0, -50%);
+}
