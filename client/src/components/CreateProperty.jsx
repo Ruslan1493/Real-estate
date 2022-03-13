@@ -1,44 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './property.module.scss';
 
 const CreateProperty = () => {
+    const values = useState({
+        title: '',
+        town: '',
+        price: 0,
+        district: '',
+        area: '',
+
+    });
+
+    let onFormSubmit = (e) => {
+        e.preventDefault();
+        console.log()
+    }
 
     return (
-        <form>
-            <label>
-                Title
-                <input type='text' value='' />
-            </label>
-            <label>
-                Town
-                <input type='text' value='' />
-            </label>
-            <label>
-                Price
-                <input type='text' value='' />
-            </label>
-            <label>
-                Disctrict
-                <input type='text' value='' />
-            </label>
-            <label>
-                Area
-                <input type='text' value='' />
-            </label>
-            <label>
-                Floor
-                <input type='text' value='' />
-            </label>
-            <label>
-                Building Floors
-                <input type='text' value='' />
-            </label>
-        </form>
-        //price
-        //categories: 
-        //area: 
-        //floor: 
-        //buildingFloors: { type: mongoose.SchemaTypes.String, required: true },
+        <div className={style.formWrapper}>
+            <form onSubmit={onFormSubmit}>
+                <label>
+                    <p>Title</p>
+                    <input type='text' value='' />
+                </label>
+                <label>
+                    <p>Town</p>
+                    <input type='text' value='' />
+                </label>
+                <label>
+                    <p>Price</p>
+                    <input type='text' value='' />
+                </label>
+                <label>
+                    <p>Disctrict</p>
+                    <input type='text' value='' />
+                </label>
+                <label>
+                    <p>Area</p>
+                    <input type='text' value='' />
+                </label>
+                <label>
+                    <p>Floor</p>
+                    <input type='text' value='' />
+                </label>
+                <label>
+                    <p>Building Floors</p>
+                    <input type='text' value='' />
+                </label>
+                <button>Submit</button>
+            </form>
+        </div>
     )
 };
 

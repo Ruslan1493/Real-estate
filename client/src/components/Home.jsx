@@ -1,4 +1,5 @@
 import UploadForm from "./Firebase-components/UploadForm";
+import Properties from "./Properties";
 
 const Home = () => {
 
@@ -6,7 +7,7 @@ const Home = () => {
         <>
             <h1>Home</h1>
             <UploadForm />
-            
+            <Properties />
         </>
     )
 };

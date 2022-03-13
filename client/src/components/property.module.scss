@@ -1,9 +1,35 @@
+// body{
+//     text-align:center;
+// }
+
+// .formWrapper{
+//     display:inline-block;
+//     background-color: rgba(34, 216, 131, 0.637);
+//     border-radius: 5px;
+//     height: auto;
+//     padding: 15px 18px;
+// }
+
+form {
+    max-width: 500px;
+    margin: auto;
+    button{
+        display: block;
+        margin: auto;
+    }
+}
+
 label{
     display: block;
-    // margin: 0 auto;
+    margin: auto;
     justify-content: center;
+    p{
+        margin: 0;
+        text-align: center;
+    }
 }
 
 input{
     display: block;
+    margin: auto;
 }

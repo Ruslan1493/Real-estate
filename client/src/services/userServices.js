@@ -11,3 +11,8 @@ export const signIn = (isRegister, data) => {
     })
         .then(res => res.json());
 };
+
+export const getAllProperties = () => {
+    return fetch('http://localhost:4000/property')
+        .then(res => res.json())
+};
