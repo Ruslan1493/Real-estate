@@ -19,11 +19,11 @@ form {
     }
 }
 
-label{
+label, select{
     display: block;
     margin: auto;
     justify-content: center;
-    p{
+    p, label{
         margin: 0;
         text-align: center;
     }

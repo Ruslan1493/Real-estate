@@ -17,4 +17,18 @@ router.get('/', (req, res) => {
         })
 });
 
+//  title: '',
+// town: '',
+// price: 0,
+// district: '',
+// area: '',
+// floor: '',
+// buildingFloors: '',
+
+router.post('/create', (req, res) => {
+    const { title, town, price, district, area, floor, buildingFloors} = req.body;
+    
+
+});
+
 module.exports = router;
