@@ -20,31 +20,31 @@ const CreateProperty = () => {
     }
 
     let onChange = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log(e.target.name);
-        if (e.target.name === 'sale') {
+        if (e.target.name === 'sale' || e.target.name === 'rent') {
             console.log(e.target.checked)
             console.log(e.target.value)
             const isChecked = e.target.checked;
             const categoryName = e.target.name;
-            if (values.categories.includes('sale')) {
+            if (values.categories.includes(categoryName)) {
                 let newCategories;
                 if (!isChecked) {
-                    newCategories = values.categories.filter(c => c !== 'sale');
+                    newCategories = values.categories.filter(c => c !== categoryName);
                 } else {
-                    newCategories = [...values.categories, 'sale'];
+                    newCategories = [...values.categories, categoryName];
                 }
                 setValues({
                     ...values,
                     categories: newCategories
                 })
                 return
-            } else if (!values.categories.includes('sale')) {
+            } else if (!values.categories.includes(categoryName)) {
                 let newCategories;
                 if (!isChecked) {
-                    newCategories = values.categories.filter(c => c !== 'sale');
+                    newCategories = values.categories.filter(c => c !== categoryName);
                 } else {
-                    newCategories = [...values.categories, 'sale'];
+                    newCategories = [...values.categories, categoryName];
                 }
                 setValues({
                     ...values,
@@ -69,9 +69,17 @@ const CreateProperty = () => {
         <div className={style.formWrapper}>
             <form action='/create' method='POST' onSubmit={onFormSubmit}>
                 <label>
-                    <p>Categories</p>
-                    <label for='sale'>Sale</label>
-                    <input type='checkbox' name='sale' value={values.categories} onChange={onChange} />
+                    <h3>Categories</h3>
+                    <div className={style.divCheckboxWrapper}>
+                        <p className={style.checkboxWrapper}> 
+                            <label className={style.checkboxLabel} for='sale'>Sale</label>
+                            <input type='checkbox' name='sale' value={values.categories} onChange={onChange} />
+                        </p>
+                        <p className={style.checkboxWrapper}>
+                            <label className={style.checkboxLabel} for='rent'>Rent</label>
+                            <input type='checkbox' name='rent' value={values.categories} onChange={onChange} />
+                        </p>
+                    </div>
                 </label>
                 <label>
                     <p>Title</p>

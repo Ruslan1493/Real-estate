@@ -19,17 +19,40 @@ form {
     }
 }
 
-label, select{
-    display: block;
-    margin: auto;
-    justify-content: center;
-    p, label{
+p, label{
         margin: 0;
         text-align: center;
+}
+ 
+input{
+        display: block;
+        margin: auto;
+    }
+    
+.divCheckboxWrapper{
+    width: 40%;
+    margin: 0 auto;
+}
+
+.checkboxWrapper{
+    // justify-content: center;
+    // position: relative;
+    position: relative;
+    left: 26px;
+    display: flex;
+    justify-content: space-between;
+    p:first-child{
+        display: block;
+    }
+    .checkboxLabel{
+        display: inline;
+    }
+    input{
+        margin: 0;
+        position: relative;
+        left: -124px;
+        top: 4px;
     }
 }
 
-input{
-    display: block;
-    margin: auto;
-}
+
