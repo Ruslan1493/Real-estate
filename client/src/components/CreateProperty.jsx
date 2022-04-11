@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import style from './property.module.scss';
+import { createProperty } from '../services/userServices';
 
 const CreateProperty = () => {
     const [values, setValues] = useState({
         categories: [],
         title: '',
+        description: '',
         town: '',
         price: 0,
         district: '',
@@ -16,7 +18,11 @@ const CreateProperty = () => {
 
     let onFormSubmit = (e) => {
         e.preventDefault();
-        console.log(values)
+        console.log(values);
+        createProperty(values)
+            .then(res => {
+                console.log(res);
+            })
     }
 
     let onChange = (e) => {
@@ -27,37 +33,18 @@ const CreateProperty = () => {
             console.log(e.target.value)
             const isChecked = e.target.checked;
             const categoryName = e.target.name;
-            if (values.categories.includes(categoryName)) {
-                let newCategories;
-                if (!isChecked) {
-                    newCategories = values.categories.filter(c => c !== categoryName);
-                } else {
-                    newCategories = [...values.categories, categoryName];
-                }
-                setValues({
-                    ...values,
-                    categories: newCategories
-                })
-                return
-            } else if (!values.categories.includes(categoryName)) {
-                let newCategories;
-                if (!isChecked) {
-                    newCategories = values.categories.filter(c => c !== categoryName);
-                } else {
-                    newCategories = [...values.categories, categoryName];
-                }
-                setValues({
-                    ...values,
-                    categories: newCategories
-                })
-                return;
+            // if (values.categories.includes(categoryName)) {
+            let newCategories;
+            if (!isChecked) {
+                newCategories = values.categories.filter(c => c !== categoryName);
+            } else {
+                newCategories = [...values.categories, categoryName];
             }
-
-            // setValues({
-            //     ...values,
-            //     categories: newCategories
-            // })
-            // return
+            setValues({
+                ...values,
+                categories: newCategories
+            })
+            return
         }
         setValues({
             ...values,
@@ -71,12 +58,12 @@ const CreateProperty = () => {
                 <label>
                     <h3>Categories</h3>
                     <div className={style.divCheckboxWrapper}>
-                        <p className={style.checkboxWrapper}> 
-                            <label className={style.checkboxLabel} for='sale'>Sale</label>
+                        <p className={style.checkboxWrapper}>
+                            <label className={style.checkboxLabel} htmlFor='sale'>Sale</label>
                             <input type='checkbox' name='sale' value={values.categories} onChange={onChange} />
                         </p>
                         <p className={style.checkboxWrapper}>
-                            <label className={style.checkboxLabel} for='rent'>Rent</label>
+                            <label className={style.checkboxLabel} htmlFor='rent'>Rent</label>
                             <input type='checkbox' name='rent' value={values.categories} onChange={onChange} />
                         </p>
                     </div>
@@ -86,6 +73,10 @@ const CreateProperty = () => {
                     <input type='text' name='title' value={values.title} onChange={onChange} />
                 </label>
                 <label>
+                    <p>Description</p>
+                    <textarea name='description' value={values.description} onChange={onChange}></textarea>
+                </label>
+                <label>
                     <p>Town</p>
                     <input type='text' name='town' value={values.town} onChange={onChange} />
                 </label>
@@ -93,6 +84,16 @@ const CreateProperty = () => {
                     <p>Price</p>
                     <input type='text' name='price' value={values.price} onChange={onChange} />
                 </label>
+                {
+                    values.categories.includes('rent')
+                        ?
+                        <label>
+                            <p>Rent Price</p>
+                            <input type='text' name='rentPrice' value={values.rentPrice} onChange={onChange} />
+                        </label>
+                        :
+                        null
+                }
                 <label>
                     <p>Disctrict</p>
                     <input type='text' name='district' value={values.district} onChange={onChange} />

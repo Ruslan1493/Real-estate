@@ -11,7 +11,7 @@ const PropertySchema = new Schema({
     floor: { type: mongoose.SchemaTypes.String, required: true },
     buildingFloors: { type: mongoose.SchemaTypes.String, required: true },
     buildingType: { type: mongoose.SchemaTypes.String, required: true },
-    
+    description: { type: mongoose.SchemaTypes.String, required: false },
 });
 
 const Property = mongoose.model('Property', PropertySchema);

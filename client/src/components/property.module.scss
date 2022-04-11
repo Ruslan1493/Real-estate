@@ -13,46 +13,55 @@
 form {
     max-width: 500px;
     margin: auto;
-    button{
+
+    button {
         display: block;
         margin: auto;
     }
 }
 
-p, label{
-        margin: 0;
-        text-align: center;
+p,
+label {
+    margin: 0;
+    text-align: center;
 }
- 
-input{
-        display: block;
-        margin: auto;
-    }
-    
-.divCheckboxWrapper{
+
+input,
+textarea {
+    display: block;
+    margin: auto;
+}
+
+textarea{
+    width: 30vw;
+    height: 40vh;
+}
+
+.divCheckboxWrapper {
     width: 40%;
     margin: 0 auto;
 }
 
-.checkboxWrapper{
+.checkboxWrapper {
     // justify-content: center;
     // position: relative;
     position: relative;
     left: 26px;
     display: flex;
     justify-content: space-between;
-    p:first-child{
+
+    p:first-child {
         display: block;
     }
-    .checkboxLabel{
+
+    .checkboxLabel {
         display: inline;
     }
-    input{
+
+    input {
         margin: 0;
         position: relative;
         left: -124px;
         top: 4px;
     }
 }
-
-
