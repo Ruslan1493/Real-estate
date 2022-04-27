@@ -3,6 +3,7 @@ const router = express.Router();
 const Property = require('../models/Property');
 
 router.get('/', (req, res) => {
+    
     Property.find()
         .then(data => {
             res.status(200).send(JSON.stringify({
@@ -15,6 +16,13 @@ router.get('/', (req, res) => {
                 message: err
             }));
         })
+});
+
+router.post('/upload/image', (req, res) => {
+    const { data } = req.body;
+    console.log('uploaded')
+    console.log(data);
+    res.status(200).send(JSON.stringify({message: 'success', data: data}))
 });
 
 //  title: '',
