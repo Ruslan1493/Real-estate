@@ -18,11 +18,11 @@ router.get('/', (req, res) => {
         })
 });
 
-router.post('/upload/image', (req, res) => {
-    const { data } = req.body;
+router.post('/upload/images', (req, res) => {
+    const { images } = req.body;
     console.log('uploaded')
-    console.log(data);
-    res.status(200).send(JSON.stringify({message: 'success', data: data}))
+    console.log(req.body.images);
+    res.status(200).send(JSON.stringify({message: 'success', data: images}))
 });
 
 //  title: '',
