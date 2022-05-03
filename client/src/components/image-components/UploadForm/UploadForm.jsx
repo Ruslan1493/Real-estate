@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ProgressBar from './ProgressBar';
-import styles from './progress-bar.module.scss';
+import ProgressBar from '../ProgressBar';
+import styles from './upload-form.module.scss';
 import { useEffect } from 'react';
 
 const UploadForm = () => {
@@ -44,9 +44,7 @@ const UploadForm = () => {
         reader.onload = (e) => {
             const data = reader.result;
             console.log(data)
-            setImages((oldArray => {
-                return [...oldArray, data]
-            }));
+
             setPreviewFile(data);
         };
         reader.readAsDataURL(file);
@@ -55,13 +53,10 @@ const UploadForm = () => {
 
     const createProperty = (e) => {
         e.preventDefault();
-        // console.log(previewFile)
         if (images.length === 0) {
             setError('Please, select a file first');
             return;
         };
-
-        console.log('Images: ', images )
 
         fetch('http://localhost:4000/property/upload/images', {
             method: 'POST',
@@ -81,7 +76,13 @@ const UploadForm = () => {
 
     const addImageHandler = (e) => {
         e.preventDefault();
-
+        if (!previewFile) {
+            setError('Please, select a file first');
+            return;
+        }
+        setImages((oldArray => {
+            return [...oldArray, previewFile]
+        }));
     };
 
 
@@ -96,8 +97,17 @@ const UploadForm = () => {
                 <button type='button' onClick={addImageHandler}>Add Image</button>
                 <button type='submit'>Create Property</button>
             </form>
-            {images && <ul>{images.map(el => (<li><img src={el} /></li>))}</ul>}
-            {previewFile && <img src={previewFile} />}
+            <div>
+                <p>Selected images</p>
+                {images &&
+                    <ul className={styles.imageGallery}>
+                        {images.map(el => (<li><img className={styles.image} src={el} /></li>))}
+                    </ul>}
+            </div>
+            <div className={styles.filePreview}>
+                <p>Image Preview</p>
+                {previewFile && <img src={previewFile} />}
+            </div>
         </span>
     )
 };
