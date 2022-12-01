@@ -1,4 +1,15 @@
-const LogForm = ({ isRegister, inputValue, onChange, inputVal, onChangeVal }) => {
+import { ChangeEvent, FunctionComponent } from 'react';
+import { InputValueLogin } from '../User/Login';
+
+interface LogFormProps {
+    isRegister: boolean,
+    inputValue: InputValueLogin,
+    inputVal?: string,
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void,
+    onChangeVal?: (e: ChangeEvent<HTMLInputElement>) => void
+}
+
+const LogForm: FunctionComponent<LogFormProps> = ({ isRegister, inputValue, onChange, inputVal, onChangeVal }) => {
     console.log(isRegister);
     return (
         <>

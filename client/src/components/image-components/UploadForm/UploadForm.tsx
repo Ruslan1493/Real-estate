@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import ProgressBar from '../ProgressBar';
 import styles from './upload-form.module.scss';
 import { useEffect } from 'react';
 
-const UploadForm = () => {
-    const [images, setImages] = useState([]);
-    const [error, setError] = useState('');
-    const [selectedFile, setSelectedFile] = useState('');
-    const [previewFile, setPreviewFile] = useState('');
+const UploadForm: FunctionComponent = () => {
+    const [images, setImages] = useState<string[]>([]);
+    const [error, setError] = useState<string>('');
+    const [selectedFile, setSelectedFile] = useState<string>('');
+    const [previewFile, setPreviewFile] = useState<string>('');
 
     const types = ['image/png', 'image/jpeg', 'image/jpg'];
 
@@ -20,7 +20,7 @@ const UploadForm = () => {
         }
     }, [selectedFile]);
 
-    const changeHandler = (e) => {
+    const changeHandler = (e: any) => {
         console.log('Files: ')
         console.log(e.target.files)
         const selected = e.target.files[0];
@@ -39,19 +39,20 @@ const UploadForm = () => {
         }
     };
 
-    const previewImage = (file) => {
+    const previewImage = (file: any) => {
         const reader = new FileReader();
-        reader.onload = (e) => {
-            const data = reader.result;
+        reader.onload = (e: any) => {
+            const data: string = reader.result as string;
             console.log(data)
-
-            setPreviewFile(data);
+            if(data){
+                setPreviewFile(data);
+            }
         };
         reader.readAsDataURL(file);
         console.log(file)
     }
 
-    const createProperty = (e) => {
+    const createProperty = (e: any) => {
         e.preventDefault();
         if (images.length === 0) {
             setError('Please, select a file first');
@@ -74,13 +75,13 @@ const UploadForm = () => {
             });
     };
 
-    const addImageHandler = (e) => {
+    const addImageHandler = (e: any) => {
         e.preventDefault();
         if (!previewFile) {
             setError('Please, select a file first');
             return;
         }
-        setImages((oldArray => {
+        setImages(((oldArray: string[]) => {
             return [...oldArray, previewFile]
         }));
     };

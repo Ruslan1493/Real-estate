@@ -1,7 +1,8 @@
+import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import style from './Navigation.module.scss';
 
-const Navigation = () => {
+const Navigation: FunctionComponent = () => {
     return (
         <>
             <div className={style.navigation}>
